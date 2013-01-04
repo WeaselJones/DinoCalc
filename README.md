@@ -14,15 +14,17 @@ the answer.
 For now the objective is to create a calculator capable of just 
 adding and subtracting.
 
-Future objectives will be to: 
+Future objectives (not in any particular order) will be to: 
 
-1) replace the Arduino UNO board with a custom made PCB and
+1) replace the Arduino Pro Mini board with a custom made PCB and
    reduce parts to a minimum
    
 2) add multiplication and division to the calculator's 
    capabilities.  
    
-3) develop a custom keypad 
+3) develop a custom keypad (maybe using tactile buttons and caps,
+   or making my own "membrane" type keypad, or exploring "conductive"
+   type buttons)
 
 4) add sound for errors or beep whenever custom keypad button is 
    pressed
