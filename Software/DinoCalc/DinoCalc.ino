@@ -1,5 +1,5 @@
 /* Quiz Kid Calculator clone
-   by James R. Bundick 
+   by James R. Bundick (weaseljones@gmail.com)
    Arduino IDE 1.0.3
 ................................................................
 License
