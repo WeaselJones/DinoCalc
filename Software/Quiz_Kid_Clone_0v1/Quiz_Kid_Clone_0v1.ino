@@ -1,4 +1,4 @@
-/* Quiz Kit Calculator clone
+/* Quiz Kid Calculator clone
 
 References used during devolpment:
 Example 42.3 - Numeric keypad and I2C LCD
