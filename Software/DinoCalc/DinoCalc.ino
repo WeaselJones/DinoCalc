@@ -1,4 +1,4 @@
-/* Quiz Kid Calculator clone
+/* Quiz Kit Calculator clone
 
 References used during devolpment:
 Example 42.3 - Numeric keypad and I2C LCD
@@ -10,6 +10,7 @@ http://www.arduino.cc/playground/Code/Keypad
 
 /*Version History
 
+0.2 2012-12-17 - James R. Bundick: conversion of string to integer
 0.1 2012-12-17 - James R. Bundick: Reading of membrane 4x4 keypad
 
 */
@@ -51,6 +52,7 @@ void loop()
 {
   char key = keypad.getKey();
   
+ 
   if (key != NO_KEY)
   {
     if (i == 0)
@@ -63,6 +65,7 @@ void loop()
 
     if (i == 1)
     {
+
       if (key != '+')
       {
         stringTwo = stringTwo + key;
@@ -84,13 +87,49 @@ void loop()
 
      if (key == 'C')
     {
+      clearCalc();
+    }
+       if (key == '=')
+      {
+        stringThree = stringThree + key;
+        i = 3;
+        calcAnswer();
+      }
+
+  }
+}
+
+void calcAnswer ()
+{
+  x = stringOne.toInt();
+  y = stringTwo.toInt();
+  z = x + y;
+
+    Serial.println (x);
+    Serial.println ('+');
+    Serial.println (y);
+    Serial.println ('=');
+    Serial.println (z);
+ 
+  clearCalc();
+
+}
+
+void printAnswer ()
+{
+}
+
+void clearCalc()
+{
       Serial.println ("cleared");
       stringOne = String ();
       stringTwo = String ();
       stringThree = String ();
       i = 0;
       j = 0;
-    }
+      x = 0;
+      y = 0;
+      z = 0;
 
-  }
+
 }
