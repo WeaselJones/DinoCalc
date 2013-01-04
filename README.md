@@ -36,6 +36,8 @@ Future objectives (not in any particular order) will be to:
    dinosaur) and if wrong move closer to peril.  Loser is the one 
    that gets eaten (chomp,chomp,chomp).
 
-6) Add recharging circuit
+6) Make circuit low-power for longer battery life and replace the 9V 
+   battery with two NiMH AA batteries.
 
-7) Make circuit low-power for longer battery life
+7) Add a recharging circuit to recharge the two NiMH AA batteries 
+   from USB.
