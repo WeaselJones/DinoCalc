@@ -1,3 +1,10 @@
+DinoCalc Hardware version 1.0 (Prototype stage)
+
+The following is a list of parts needed for this project on sparkfun.com.  
+Both this BOM and the mouser BOM are needed
+to complete the hardware portion of the DinoCalc.
+
+
 Bill of Material for items from Sparkfun.com
 -------------------------------------------------------
 
