@@ -8,7 +8,7 @@ the "?" key.  If your answer was right the green LED would light
 up, if your answer was wrong, the red LED would light up.
 
 I believe this will be a great way for my preschool son to check 
-his simple arithmatic without having a calculator just give him 
+his simple arithmetic without having a calculator just give him 
 the answer.
 
 For now the objective is to create a calculator capable of just 
