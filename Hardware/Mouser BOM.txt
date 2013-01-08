@@ -1,0 +1,33 @@
+DinoCalc Hardware version 1.0 (Prototype stage)
+
+Both this BOM and the Sparkfun BOM are needed
+to complete the hardware portion of the DinoCalc.
+
+
+
+Bill of Material for items from MOUSER.COM
+-------------------------------------------------------
+
+Item
+No.   Qty   Description                            Part Number
+--    ---   -------------------------------------  ----------------
+1)     1    9v Alkaline Battery			   658-6LR61XWA
+2)     1    CARBON FILM RESISTOR - 330 OHMS        291-330-RC
+3)     1    CARBON FILM RESISTOR - 270 OHMS        291-270-RC
+4)     1    SPST ON-OFF SLIDE SWITCH               112-R13-602A
+5)     1    LED - THROUGH HOLE GREEN DIFFUSED      78-TLHG5400
+6)     1    LED - THROUGH HOLE RED DIFFUSED        78-TLHR5400
+7)     2    5MM LED PANEL MOUNTING                 696-SSH-LX5091
+8)     1    4X4 MATRIX MEMBRANE KEYPAD             619-27899
+9)     1    PROTOTYPE BOARD FOR 1553DBKBAT ENC     854-PR1553DBAT
+10)    1    HAND HELD ENC WITH BATT COMPARTMENT    546-1553DBKBAT
+
+
+
+You can also find this Bill of Material on the mouser.com website under
+the DinoCalc version 1.0 project at the following link:
+  
+http://www.mouser.com/ProjectManager/ProjectDetail.aspx?AccessID=0904c64079
+
+
+BOM is current as of 07-JAN-2013

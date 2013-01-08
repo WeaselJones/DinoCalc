@@ -1,7 +1,0 @@
-DinoCalc Hardware version 1.0 (Prototype stage)
-
-The following is the link for this project on mouser.com.  Go to the link
-and add the items that you need.  Both this BOM and the Sparkfun BOM are needed
-to complete the hardware portion of the DinoCalc.
-
-http://www.mouser.com/ProjectManager/ProjectDetail.aspx?AccessID=0904c64079
