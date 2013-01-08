@@ -1,4 +1,4 @@
-/* Quiz Kid Calculator clone test
+/* Quiz Kid Calculator clone
    by James R. Bundick (weaseljones@gmail.com)
    Programmed using Arduino IDE 1.0.3
 ................................................................
