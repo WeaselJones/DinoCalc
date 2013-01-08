@@ -1,6 +1,6 @@
 /* Quiz Kid Calculator clone
    by James R. Bundick (weaseljones@gmail.com)
-   Arduino IDE 1.0.3
+   Programmed using Arduino IDE 1.0.3
 ................................................................
 License
 The library, Keypad.h version 3.0, was used without modification
