@@ -136,6 +136,10 @@ Software Logic
    [12 != 24, so light red LED]
 
 Version History
+1.1  2013-01-09 - JRB:  Low Power Code Added.  Code ported to just 
+      Atmega328p chip running at 8MHz and 2.7V.  Keypad not yet
+      tested.
+
 1.0  2012-12-31 - JRB:  RELEASE VERSION.  Changed keypad matrix to
       match the layout I printed on the keypad sticker.  Added
       blinkLEDs() to show activity when calculator is first powered
@@ -181,7 +185,7 @@ Version History
 */
 
 #include "Keypad.h" // http://www.arduino.cc/playground/Code/Keypad by Mark Stanley, Alexander Brevig 
-    
+#include <avr/sleep.h>    
 
 const byte ROWS = 4; //four rows
 const byte COLS = 4; //four columns
@@ -201,7 +205,9 @@ const int ledGRN = 11;  //Arduino output for Green LED
 const int ledRED = 10;  //Arduino output for Red LED
 
 long previousMillis = 0; //used to light LED without using delay()
+long previousMillis2 = 0; //used for sleep time
 long interval = 3000;  //maximum time to leave LED HIGH (on)
+long interval2 = 5000;  //time till sleep is enabled
 
 float x; //first number that is entered by user
 float y; //second number that is entered by user
@@ -236,15 +242,22 @@ void setup()
   i = 0;
   j = 0;
   blinkLEDs();
+  
+  previousMillis2 = millis();//move this later
 }
 
 void loop()
 {
   unsigned long currentMillis = millis();       //Make sure LED doesn't stay continuously on, 
+  unsigned long currentMillis2 = millis();       //Make sure LED doesn't stay continuously on, 
   if(currentMillis - previousMillis > interval) //but allow the code to continue without a delay.
   {                                             
     digitalWrite (ledGRN, LOW);                 
     digitalWrite (ledRED, LOW);                 
+  }
+ if(currentMillis2 - previousMillis2 > interval2) //sleep
+  {                                             
+    GoToSleep();       
   }
 
 
@@ -519,3 +532,29 @@ void blinkLEDs()
   }  
 } 
 
+void GoToSleep()
+{
+  // disable ADC
+  ADCSRA = 0;  
+  
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);  
+  sleep_enable();
+
+  // will be called when pin D2 goes low  
+  attachInterrupt (0, wake, LOW);
+ 
+  // turn off brown-out enable in software
+  MCUCR = _BV (BODS) | _BV (BODSE);
+  MCUCR = _BV (BODS); 
+  sleep_cpu ();  
+  
+  // must do this as the pin will probably stay low for a while
+  detachInterrupt (0);
+  
+  } // end of loop
+
+void wake ()
+{
+  // cancel sleep as a precaution
+  sleep_disable();
+}  // end of wake
