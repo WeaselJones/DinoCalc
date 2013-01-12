@@ -74,7 +74,7 @@ Item #3:  This is needed only if you don't want to make the Arduino Pro Mini a p
           in your calculator and you want to reuse it for a later project.
 Item #5:  This is needed if you want to permanently attach a means to reprogram the Arduino Pro Mini after it
           has been installed into your calculator.
-Item #6:  This can be used in place of Item #5 and wouldn't have to be soldered to teh Arduino Pro Mini.
+Item #6:  This can be used in place of Item #5 and wouldn't have to be soldered to the Arduino Pro Mini.
 Item #7 and #8:  These are recommended only if you don't already have some old jumper wires (such as CD-ROM kits or 
           from old computer boards) laying around.
 
