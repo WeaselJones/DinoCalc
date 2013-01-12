@@ -3077,7 +3077,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <package name="CREATIVE_COMMONS">
 <text x="-20.32" y="5.08" size="1.778" layer="27">Released under the Creative Commons Attribution Share-Alike 3.0 License</text>
 <text x="0" y="2.54" size="1.778" layer="27">http://creativecommons.org/licenses/by-sa/3.0</text>
-<text x="11.43" y="0" size="1.778" layer="27">Designed by:</text>
+<text x="11.43" y="0" size="1.778" layer="27">Designed by: James R. Bundick (weaseljones@gmail.com)</text>
 </package>
 </packages>
 <symbols>
@@ -6672,6 +6672,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <text x="2.54" y="27.94" size="1.9304" layer="94">Attribution Share-Alike 3.0 License</text>
 <text x="2.54" y="24.13" size="1.9304" layer="94">http://creativecommons.org/licenses/by-sa/3.0</text>
 <text x="1.27" y="11.43" size="2.54" layer="94">Design by:</text>
+<text x="20.32" y="7.62" size="3.81" layer="94">James R. Bundick</text>
 </symbol>
 <symbol name="DGND">
 <wire x1="-1.905" y1="0" x2="1.905" y2="0" width="0.254" layer="94"/>
@@ -7665,7 +7666,7 @@ SMT- SWCH-08247</description>
 <parts>
 <part name="U1" library="SparkFun-DigitalIC" deviceset="ATMEGA328P_PDIP" device=""/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="BATTERY"/>
-<part name="JP2" library="SparkFun-Connectors" deviceset="M03" device="PTH"/>
+<part name="JP2" library="SparkFun-Connectors" deviceset="M03" device="PTH" value="LEDS"/>
 <part name="JP3" library="SparkFun-Connectors" deviceset="M08" device="1X08" value="KEYPAD"/>
 <part name="LOGO1" library="SparkFun-Aesthetics" deviceset="OSHW-LOGO" device="L"/>
 <part name="FRAME1" library="SparkFun-Aesthetics" deviceset="FRAME-LETTER" device=""/>
@@ -7690,7 +7691,6 @@ SMT- SWCH-08247</description>
 <sheet>
 <plain>
 <text x="238.76" y="7.62" size="2.54" layer="91" font="vector">1v0</text>
-<text x="165.1" y="7.62" size="3.81" layer="91" font="vector">James R. Bundick</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="104.14" y="96.52"/>
@@ -7819,8 +7819,8 @@ SMT- SWCH-08247</description>
 <pinref part="S1" gate="S" pin="1"/>
 <wire x1="53.34" y1="137.16" x2="55.88" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="S1" gate="S" pin="2"/>
-<wire x1="55.88" y1="134.62" x2="55.88" y2="137.16" width="0.1524" layer="91"/>
-<junction x="55.88" y="137.16"/>
+<wire x1="55.88" y1="134.62" x2="53.34" y2="134.62" width="0.1524" layer="91"/>
+<junction x="53.34" y="134.62"/>
 </segment>
 <segment>
 <pinref part="JP4" gate="G$1" pin="6"/>
