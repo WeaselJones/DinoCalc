@@ -8175,7 +8175,7 @@ diameter 2.54 mm, horizontal, grid 10.16 mm</description>
 <sheets>
 <sheet>
 <plain>
-<text x="238.76" y="7.62" size="2.54" layer="91" font="vector">1v0</text>
+<text x="238.76" y="7.62" size="2.54" layer="91" font="vector">1v2</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="104.14" y="96.52"/>
