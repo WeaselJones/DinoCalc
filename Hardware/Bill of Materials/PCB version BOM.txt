@@ -1,0 +1,4 @@
+DinoCalc Hardware version 1.2 (PCB version)
+
+
+BOM will go here

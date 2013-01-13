@@ -1,4 +1,4 @@
-DinoCalc Hardware version 1.0 (Prototype stage)
+DinoCalc Hardware version 1.0 (Arduino Pro Mini Version)
 
 
 ----------------------------------------------------
