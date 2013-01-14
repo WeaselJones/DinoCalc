@@ -141,6 +141,11 @@
 </text>
 <text x="78.74" y="16.51" size="2.54" layer="16" font="vector" rot="MR270" align="center">+</text>
 <text x="78.74" y="19.05" size="2.54" layer="16" font="vector" rot="MR270" align="center">-</text>
+<text x="101.6" y="33.02" size="2.54" layer="16" font="vector" rot="MR270">Date Made:
+
+Serial #:</text>
+<dimension x1="106.807" y1="73.66" x2="0" y2="73.66" x3="53.4035" y3="81.28" textsize="1.778" layer="16" unit="inch" visible="yes"/>
+<dimension x1="106.807" y1="0" x2="106.68" y2="73.66" x3="114.363478125" y3="36.8431375" textsize="1.778" layer="16" unit="inch" visible="yes"/>
 </plain>
 <libraries>
 <library name="SparkFun-DigitalIC">
