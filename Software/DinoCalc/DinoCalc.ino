@@ -1,4 +1,4 @@
-/* Quiz Kid Calculator clone
+/* DinoCalc Calculator Software 1v0
    by James R. Bundick (weaseljones@gmail.com)
    Programmed using Arduino IDE 1.0.3
 ................................................................
