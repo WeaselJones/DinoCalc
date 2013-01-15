@@ -1,4 +1,4 @@
-/* Quiz Kid Calculator clone
+/* DinoCalc Calculator Software 1v1
    by James R. Bundick (weaseljones@gmail.com)
    Programmed using Arduino IDE 1.0.3
 ................................................................
@@ -9,7 +9,7 @@ which they released under the GNU LGPL 2.1 license.
 
 The rest of the code done by myself is released under 
 the MIT License  http://opensource.org/licenses/MIT
-Copyright (c) 2012 James R. Bundick
+Copyright (c) 2013 James R. Bundick
 
 Permission is hereby granted, free of charge, to any person 
 obtaining a copy of this software and associated documentation 
@@ -72,34 +72,17 @@ References used during development:
 3)  "Arduino Cookbook", 2nd edition, by Michael Margolis
 4)  "BlinkWithoutDelay" example by David A. Mellis and Paul 
      Soffregen that came with Arduino IDE 1.0.3 
-5)  Floating number math with Arduino,
-    http://arduino.cc/en/Reference/Float 
-
-Bill of Material for prototype:
-1)  Arduino Pro Mini 5V/16MHz from Sparkfun.com
-2)  4x4 Matrix keypad purchased on Amazon.com
-3)  Red LED
-4)  Green LED
-5)  220 ohm resistor (qty: 2)
-6)  SPST switch (used SPDT because that is what I had)
-7)  Female and Male Headers (Sparkfun.com)
-8)  Protobox - 1553DBAT-BK KIT from Busboard Prototye Systems
-    Purchased on Amazon.com
-    (Includes:  Enclosure, PCB, screws, battery clips)
-9)  Hook-up Wire
-10) 9V Battery
-11) Avery Adhesive Sticker Paper
-    Purchased on Amazon.com
-12) Heat Shrink (Radio Shack)
-13) LED holders (Radio Shack)
+5)  Floating number math with Arduino, http://arduino.cc/en/Reference/Float 
+6)  "Power saving techniques for microprocessors", Nick Gammon,
+    Gammon Software Solutions forum, http://www.gammon.com.au/forum/?id=11497
 
 Hardware layout:
 Keypad:  4x4 Matrix Membrane keypad 
           
-          1  2  3  A 
-          4  5  6  B
-          7  8  9  C
-          *  0  #  D
+          7  8  9  + 
+          4  5  6  -
+          7  8  9  ?
+          C  0  .  =
           
          Each Row and Each Column connects to a PIN for total of 
          8 pins.
@@ -117,9 +100,9 @@ Arduino pin 7 ---> 4x4 keypad pin 6
 Arduino pin 8 ---> 4x4 keypad pin 7
 Arduino pin 9 ---> 4x4 keypad pin 8
 Arduino pin 10 ---> (long leg)RED LED(short leg) ---> 
-                     220 ohm resistor ---> GND
+                     330 ohm resistor ---> GND
 Arduino pin 11 ---> (long leg)GRN LED(short leg) ---> 
-                     220 ohm resistor ---> GND
+                     270 ohm resistor ---> GND
 
 
 Software Logic
@@ -135,7 +118,13 @@ Software Logic
    are equal then light green LED. 
    [12 != 24, so light red LED]
 
+................................................................
 Version History
+
+1.1  2013-01-12 - JRB:  Low Power Code Added.  Code ported to just 
+      Atmega328p chip running at 8MHz and 2.7V.  Keypad not yet
+      tested.  BOM removed from comments.
+
 1.0  2012-12-31 - JRB:  RELEASE VERSION.  Changed keypad matrix to
       match the layout I printed on the keypad sticker.  Added
       blinkLEDs() to show activity when calculator is first powered
@@ -165,7 +154,6 @@ Version History
       correct and wrong answer results.  Changed code to allow 
       negative number answers.
                       
-
 0.3 2012-12-18 - JRB: Corrected minor string issue with equal sign
       attaching to stringOne after calculation.  Cleaned up serial
       commands for debugging.
@@ -177,11 +165,11 @@ Version History
 0.1 2012-12-17 - JRB: Got Code working to read key presses of 
       membrane 4x4 keypad.  Serial print commands added for 
       debugging and will be commented out when code is stable.
-
+................................................................
 */
 
 #include "Keypad.h" // http://www.arduino.cc/playground/Code/Keypad by Mark Stanley, Alexander Brevig 
-    
+#include <avr/sleep.h>    
 
 const byte ROWS = 4; //four rows
 const byte COLS = 4; //four columns
@@ -201,7 +189,9 @@ const int ledGRN = 11;  //Arduino output for Green LED
 const int ledRED = 10;  //Arduino output for Red LED
 
 long previousMillis = 0; //used to light LED without using delay()
+long previousMillis2 = 0; //used for sleep time
 long interval = 3000;  //maximum time to leave LED HIGH (on)
+long interval2 = 5000;  //time till sleep is enabled
 
 float x; //first number that is entered by user
 float y; //second number that is entered by user
@@ -236,15 +226,22 @@ void setup()
   i = 0;
   j = 0;
   blinkLEDs();
+  
+  previousMillis2 = millis();//move this later
 }
 
 void loop()
 {
   unsigned long currentMillis = millis();       //Make sure LED doesn't stay continuously on, 
+  unsigned long currentMillis2 = millis();       //Make sure LED doesn't stay continuously on, 
   if(currentMillis - previousMillis > interval) //but allow the code to continue without a delay.
   {                                             
     digitalWrite (ledGRN, LOW);                 
     digitalWrite (ledRED, LOW);                 
+  }
+ if(currentMillis2 - previousMillis2 > interval2) //sleep
+  {                                             
+    GoToSleep();       
   }
 
 
@@ -519,3 +516,29 @@ void blinkLEDs()
   }  
 } 
 
+void GoToSleep()
+{
+  // disable ADC
+  ADCSRA = 0;  
+  
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);  
+  sleep_enable();
+
+  // will be called when pin D2 goes low  
+  attachInterrupt (0, wake, LOW);
+ 
+  // turn off brown-out enable in software
+  MCUCR = _BV (BODS) | _BV (BODSE);
+  MCUCR = _BV (BODS); 
+  sleep_cpu ();  
+  
+  // must do this as the pin will probably stay low for a while
+  detachInterrupt (0);
+  
+  } // end of loop
+
+void wake ()
+{
+  // cancel sleep as a precaution
+  sleep_disable();
+}  // end of wake
