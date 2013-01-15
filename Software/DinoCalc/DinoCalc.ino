@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* DinoCalc Calculator Software 1v1
+=======
+/* DinoCalc Calculator Software 1v0
+>>>>>>> origin/master
    by James R. Bundick (weaseljones@gmail.com)
    Programmed using Arduino IDE 1.0.3
 ................................................................
@@ -516,6 +520,7 @@ void blinkLEDs()
   }  
 } 
 
+<<<<<<< HEAD
 void GoToSleep()
 {
   // disable ADC
@@ -542,3 +547,5 @@ void wake ()
   // cancel sleep as a precaution
   sleep_disable();
 }  // end of wake
+=======
+>>>>>>> origin/master
