@@ -1,4 +1,4 @@
-/* DinoCalc Calculator Software 1v0
+/* DinoCalc Calculator Software 1v1
    by James R. Bundick (weaseljones@gmail.com)
    Programmed using Arduino IDE 1.0.3
 ................................................................
@@ -7,9 +7,12 @@ The library, Keypad.h version 3.0, was used without modification
 and is authored by Mark Stanley and Alexander Brevig
 which they released under the GNU LGPL 2.1 license.
 
+The lowpower/sleep code was from Nick Gammon,
+http://www.gammon.com.au/power
+
 The rest of the code done by myself is released under 
 the MIT License  http://opensource.org/licenses/MIT
-Copyright (c) 2012 James R. Bundick
+Copyright (c) 2013 James R. Bundick
 
 Permission is hereby granted, free of charge, to any person 
 obtaining a copy of this software and associated documentation 
@@ -41,29 +44,20 @@ the correct answer was, for example, 12 + 12 = 24, and then press
 the "?" key.  If your answer was right the green LED would light 
 up, if your answer was wrong, the red LED would light up.
 
-I believe this will be a great way for my preschool son to check 
-his simple arithmatic without having a calculator just give him 
-the answer.
-
-For now the objective is to create a calculator capable of just 
-adding and subtracting.
-
 Future objectives will be to: 
-1) replace the Arduino UNO board with a custom made PCB and
-   reduce parts to a minimum
-2) add multiplication and division to the calculator's 
+1) add multiplication and division to the calculator's 
    capabilities.  
-3) develop a custom keypad 
-4) add sound for errors or beep whenever custom keypad button is 
+2) develop a custom keypad 
+3) add sound for errors or beep whenever custom keypad button is 
    pressed
-5) develop code so that it could also be used for a "math" type 
+4) develop code so that it could also be used for a "math" type 
    game for multiple players.  For example, Display a math
    problem and contestants enter answer on their keypads. 
    If right move away from some peril (like a chomping 
    dinosaur) and if wrong move closer to peril.  Loser is the one 
    that gets eaten (chomp,chomp,chomp).
-6) Add recharging circuit
-7) Make circuit low-power for longer battery life
+5) Add recharging circuit
+
 
 References used during development:
 1)  http://tronixstuff.wordpress.com/tutorials  > chapter 42a
@@ -72,34 +66,18 @@ References used during development:
 3)  "Arduino Cookbook", 2nd edition, by Michael Margolis
 4)  "BlinkWithoutDelay" example by David A. Mellis and Paul 
      Soffregen that came with Arduino IDE 1.0.3 
-5)  Floating number math with Arduino,
-    http://arduino.cc/en/Reference/Float 
+5)  Floating number math with Arduino, http://arduino.cc/en/Reference/Float 
+6)  "Power saving techniques for microprocessors", Nick Gammon,
+    Gammon Software Solutions forum, http://www.gammon.com.au/power
 
-Bill of Material for prototype:
-1)  Arduino Pro Mini 5V/16MHz from Sparkfun.com
-2)  4x4 Matrix keypad purchased on Amazon.com
-3)  Red LED
-4)  Green LED
-5)  220 ohm resistor (qty: 2)
-6)  SPST switch (used SPDT because that is what I had)
-7)  Female and Male Headers (Sparkfun.com)
-8)  Protobox - 1553DBAT-BK KIT from Busboard Prototye Systems
-    Purchased on Amazon.com
-    (Includes:  Enclosure, PCB, screws, battery clips)
-9)  Hook-up Wire
-10) 9V Battery
-11) Avery Adhesive Sticker Paper
-    Purchased on Amazon.com
-12) Heat Shrink (Radio Shack)
-13) LED holders (Radio Shack)
 
 Hardware layout:
 Keypad:  4x4 Matrix Membrane keypad 
           
-          1  2  3  A 
-          4  5  6  B
-          7  8  9  C
-          *  0  #  D
+          7  8  9  + 
+          4  5  6  -
+          7  8  9  ?
+          C  0  .  =
           
          Each Row and Each Column connects to a PIN for total of 
          8 pins.
@@ -117,9 +95,9 @@ Arduino pin 7 ---> 4x4 keypad pin 6
 Arduino pin 8 ---> 4x4 keypad pin 7
 Arduino pin 9 ---> 4x4 keypad pin 8
 Arduino pin 10 ---> (long leg)RED LED(short leg) ---> 
-                     220 ohm resistor ---> GND
+                     330 ohm resistor ---> GND
 Arduino pin 11 ---> (long leg)GRN LED(short leg) ---> 
-                     220 ohm resistor ---> GND
+                     270 ohm resistor ---> GND
 
 
 Software Logic
@@ -135,7 +113,13 @@ Software Logic
    are equal then light green LED. 
    [12 != 24, so light red LED]
 
+................................................................
 Version History
+
+1.1  2013-01-15 - JRB:  Low Power Code Added.  Code ported to just 
+      Atmega328p chip running at 8MHz and 2.7V.  Sleep when no key 
+      is pressed.
+
 1.0  2012-12-31 - JRB:  RELEASE VERSION.  Changed keypad matrix to
       match the layout I printed on the keypad sticker.  Added
       blinkLEDs() to show activity when calculator is first powered
@@ -165,7 +149,6 @@ Version History
       correct and wrong answer results.  Changed code to allow 
       negative number answers.
                       
-
 0.3 2012-12-18 - JRB: Corrected minor string issue with equal sign
       attaching to stringOne after calculation.  Cleaned up serial
       commands for debugging.
@@ -177,11 +160,11 @@ Version History
 0.1 2012-12-17 - JRB: Got Code working to read key presses of 
       membrane 4x4 keypad.  Serial print commands added for 
       debugging and will be commented out when code is stable.
-
+................................................................
 */
 
 #include "Keypad.h" // http://www.arduino.cc/playground/Code/Keypad by Mark Stanley, Alexander Brevig 
-    
+#include <avr/sleep.h>    
 
 const byte ROWS = 4; //four rows
 const byte COLS = 4; //four columns
@@ -201,7 +184,9 @@ const int ledGRN = 11;  //Arduino output for Green LED
 const int ledRED = 10;  //Arduino output for Red LED
 
 long previousMillis = 0; //used to light LED without using delay()
+//[DELETE]long previousMillis2 = 0; //used for sleep time
 long interval = 3000;  //maximum time to leave LED HIGH (on)
+//[DELETE]long interval2 = 30000;  //time till sleep is enabled
 
 float x; //first number that is entered by user
 float y; //second number that is entered by user
@@ -216,6 +201,56 @@ String stringTwo;   //Placeholder for Second Number entered by user
 String stringThree; //stringThree is used to show operator and if equal has been pressed.
 String stringFour;  //Placeholder for Guessed Answer entered by user                                                     
                                                        
+//******************Nick Gammon's Code************************
+// number of items in an array
+#define NUMITEMS(arg) ((unsigned int) (sizeof (arg) / sizeof (arg [0])))
+/*
+
+Pin change interrupts.
+
+Pin                  Mask / Flag / Enable
+
+D0	  PCINT16 (PCMSK2 / PCIF2 / PCIE2)
+D1	  PCINT17 (PCMSK2 / PCIF2 / PCIE2)
+D2	  PCINT18 (PCMSK2 / PCIF2 / PCIE2)
+D3	  PCINT19 (PCMSK2 / PCIF2 / PCIE2)
+D4	  PCINT20 (PCMSK2 / PCIF2 / PCIE2)
+D5	  PCINT21 (PCMSK2 / PCIF2 / PCIE2)
+D6	  PCINT22 (PCMSK2 / PCIF2 / PCIE2)
+D7	  PCINT23 (PCMSK2 / PCIF2 / PCIE2)
+D8	  PCINT0 (PCMSK0 / PCIF0 / PCIE0)
+D9	  PCINT1 (PCMSK0 / PCIF0 / PCIE0)
+D10	  PCINT2 (PCMSK0 / PCIF0 / PCIE0)
+D11	  PCINT3 (PCMSK0 / PCIF0 / PCIE0)
+D12	  PCINT4 (PCMSK0 / PCIF0 / PCIE0)
+D13	  PCINT5 (PCMSK0 / PCIF0 / PCIE0)
+A0	  PCINT8 (PCMSK1 / PCIF1 / PCIE1)
+A1	  PCINT9 (PCMSK1 / PCIF1 / PCIE1)
+A2	  PCINT10 (PCMSK1 / PCIF1 / PCIE1)
+A3	  PCINT11 (PCMSK1 / PCIF1 / PCIE1)
+A4	  PCINT12 (PCMSK1 / PCIF1 / PCIE1)
+A5	  PCINT13 (PCMSK1 / PCIF1 / PCIE1)
+
+*/
+
+// turn off interrupts until we are ready
+ISR (PCINT0_vect)
+  {
+  PCICR = 0;  // cancel pin change interrupts
+  } // end of ISR (PCINT0_vect)
+
+ISR (PCINT1_vect)
+  {
+  PCICR = 0;  // cancel pin change interrupts
+  } // end of ISR (PCINT1_vect)
+
+ISR (PCINT2_vect)
+  {
+  PCICR = 0;  // cancel pin change interrupts
+  } // end of ISR (PCINT2_vect)
+
+//*************************************************************
+
 void setup()
 {
 //  Serial.begin(9600); //for debugging
@@ -236,21 +271,73 @@ void setup()
   i = 0;
   j = 0;
   blinkLEDs();
-}
+  
+//[DELETE]  previousMillis2 = millis();//move this later
+//****************Nick Gammon's code****************************
+  // pin change interrupt masks (see above list)
+  PCMSK2 |= _BV (PCINT22);   // pin 6
+  PCMSK2 |= _BV (PCINT23);   // pin 7
+  PCMSK0 |= _BV (PCINT0);    // pin 8
+  PCMSK0 |= _BV (PCINT1);    // pin 9
+
+  }  // end of setup
+
+// set pins as keypad library expects them
+// or call: kpd.initializePins ();
+//    however in the library I have that is a private method
+
+void reconfigurePins ()
+  {
+  byte i;
+  
+  // go back to all pins as per the keypad library
+  
+  for (i = 0; i < NUMITEMS (colPins); i++)
+    {
+    pinMode (colPins [i], OUTPUT);
+    digitalWrite (colPins [i], HIGH); 
+    }  // end of for each column 
+
+  for (i = 0; i < NUMITEMS (rowPins); i++)
+    {
+    pinMode (rowPins [i], INPUT);
+    digitalWrite (rowPins [i], HIGH); 
+    }   // end of for each row
+
+  }  // end of reconfigurePins
+
+//*************************************************************
+
 
 void loop()
 {
   unsigned long currentMillis = millis();       //Make sure LED doesn't stay continuously on, 
+//[DELETE]  unsigned long currentMillis2 = millis();       //Make sure LED doesn't stay continuously on, 
   if(currentMillis - previousMillis > interval) //but allow the code to continue without a delay.
   {                                             
     digitalWrite (ledGRN, LOW);                 
     digitalWrite (ledRED, LOW);                 
   }
+//[DELETE] if(currentMillis2 - previousMillis2 > interval2) //sleep
+//[DELETE]  {      
+//[DELETE]    blinkLEDs();    
+//[DELETE]    goToSleep();       
+//[DELETE]  }
 
 
   char key = keypad.getKey();
+     if (!key)
+     {
+     // no key pressed? go to sleep
+     goToSleep ();
+//     return;
+     }
+     blinkGRNLED();//let me know I'm out of sleep
+
   switch (key)
   {
+//[DELETE]    previousMillis2 = millis();//key is pressed, reset sleep timer
+    
     case 'C':    //If 'C' is pressed then clear calculator
       blinkLEDs();
       clearCalc();
@@ -519,3 +606,77 @@ void blinkLEDs()
   }  
 } 
 
+void blinkGRNLED()
+{
+  for (int k=0; k <3; k++) //flash LED's so you know something is going on
+  {
+    digitalWrite (ledGRN, HIGH);
+    digitalWrite (ledRED, LOW);
+    delay (50);
+    digitalWrite (ledGRN, LOW);
+    digitalWrite (ledRED, LOW);
+    delay (50);
+  }  
+} 
+
+//****************Nick Gammon's code****************************
+void goToSleep()
+  {
+  byte i;
+   
+  // set up to detect a keypress
+  for (i = 0; i < NUMITEMS (colPins); i++)
+    {
+    pinMode (colPins [i], OUTPUT);
+    digitalWrite (colPins [i], LOW);   // columns low
+    }  // end of for each column
+
+  for (i = 0; i < NUMITEMS (rowPins); i++)
+    {
+    pinMode (rowPins [i], INPUT);
+    digitalWrite (rowPins [i], HIGH);  // rows high (pull-up)
+    }  // end of for each row
+    
+   // now check no pins pressed (otherwise we wake on a key release)
+   for (i = 0; i < NUMITEMS (rowPins); i++)
+    {
+    if (digitalRead (rowPins [i]) == LOW)
+       {
+       reconfigurePins ();
+       return; 
+       } // end of a pin pressed
+    }  // end of for each row
+  
+  // overcome any debounce delays built into the keypad library
+  delay (50);
+  
+  // at this point, pressing a key should connect the high in the row to the 
+  // to the low in the column and trigger a pin change
+  
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);  
+  sleep_enable();
+
+  byte old_ADCSRA = ADCSRA;
+  // disable ADC to save power
+  ADCSRA = 0;  
+
+  PRR = 0xFF;  // turn off various modules
+   
+  PCIFR  |= _BV (PCIF0) | _BV (PCIF1) | _BV (PCIF2);   // clear any outstanding interrupts
+  PCICR  |= _BV (PCIE0) | _BV (PCIE1) | _BV (PCIE2);   // enable pin change interrupts
+   
+  // turn off brown-out enable in software
+  MCUCR = _BV (BODS) | _BV (BODSE);
+  MCUCR = _BV (BODS); 
+  sleep_cpu ();  
+ 
+  // cancel sleep as a precaution
+  sleep_disable();
+  PRR = 0;    // enable modules again
+  ADCSRA = old_ADCSRA; // re-enable ADC conversion
+  
+  // put keypad pins back how they are expected to be
+  reconfigurePins ();
+    
+  }  // end of goToSleep
+//*******************************************************
