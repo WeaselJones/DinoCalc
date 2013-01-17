@@ -12,8 +12,8 @@ a great way for my preschool son to check his simple arithmetic
 without having a calculator just give him the answer.
 
 I don't know how the original was built but I plan on starting
-with an Arduino Pro Mini as the brain so that I can get most 
-of the major bugs worked out.  And then move on to just the 
+with an Arduino Pro Mini as the brain and once I can get most 
+of the major bugs worked out I will then move on to just a 
 Atmega328p on a custom PCB with low power usage added in.
 
 For now the objective is to create a calculator capable of just adding and subtracting.
