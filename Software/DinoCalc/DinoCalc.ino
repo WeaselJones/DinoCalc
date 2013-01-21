@@ -80,7 +80,8 @@ with two NiMH AA batteries or perhaps even a “button” cell rechargeable batt
 
 
 References used during development:
-1)  http://tronixstuff.wordpress.com/tutorials  > chapter 42a
+1)  http://tronixstuff.wordpress.com/tutorials  > Arduino Tutorials,
+    chapter 42a, Keypads II
 2)  http://www.arduino.cc/playground/Code/Keypad by Mark Stanley, 
     Alexander Brevig 
 3)  "Arduino Cookbook", 2nd edition, by Michael Margolis
@@ -94,7 +95,7 @@ Bill of Material for prototype:
 2)  4x4 Matrix keypad purchased on Amazon.com
 3)  Red LED
 4)  Green LED
-5)  220 ohm resistor (qty: 2)
+5)  330 ohm resistor, 270 ohm resistor
 6)  SPST switch (used SPDT because that is what I had)
 7)  Female and Male Headers (Sparkfun.com)
 8)  Protobox - 1553DBAT-BK KIT from Busboard Prototye Systems
@@ -131,9 +132,9 @@ Arduino pin 7 ---> 4x4 keypad pin 6
 Arduino pin 8 ---> 4x4 keypad pin 7
 Arduino pin 9 ---> 4x4 keypad pin 8
 Arduino pin 10 ---> (long leg)RED LED(short leg) ---> 
-                     220 ohm resistor ---> GND
+                     330 ohm resistor ---> GND
 Arduino pin 11 ---> (long leg)GRN LED(short leg) ---> 
-                     220 ohm resistor ---> GND
+                     270 ohm resistor ---> GND
 
 
 Software Logic
