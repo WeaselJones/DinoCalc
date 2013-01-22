@@ -1,3 +1,8 @@
+DinoCalculator Version 1.0
+
+Download updates from:
+http://code.google.com/p/dinocalc/
+
 Summary:
 When I was younger I had a calculator that did not have a LCD display but instead had two LED lights, one green and one red.  You would enter a math problem with what you thought the correct answer was (for example, 12 + 12 = 24, and then press the "?" key).  If your answer was right the green LED would light up, if your answer was wrong, the red LED would light up.
 
