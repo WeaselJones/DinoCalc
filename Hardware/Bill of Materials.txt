@@ -16,7 +16,7 @@ Bill of Material for items from MOUSER.COM
 Item
 No.   Qty   Description                            Part Number
 --    ---   -------------------------------------  ----------------
-1)     1    9v Alkaline Battery			   658-6LR61XWA
+1)     1    9v Alkaline Battery			               658-6LR61XWA
 2)     1    CARBON FILM RESISTOR - 330 OHMS        291-330-RC
 3)     1    CARBON FILM RESISTOR - 270 OHMS        291-270-RC
 4)     1    SPST ON-OFF SLIDE SWITCH               112-R13-602A
@@ -63,23 +63,23 @@ No.   Qty   Description                            Part Number
 2)     1    FTDI Basic Breakout - 5V               DEV-09716  (Optional)
 3)     1    Female Headers                         PRT-00115  (Optional)
 4)     1    Break Away Headers - Straight          PRT-00116
-5)     1    Break Away Male Headers - Right Angle  PRT-00553  (Optional)
+5)     1    Break Away Male Headers - Right Angle  PRT-00553  
 6)     1    Solderless Headers - 10-pin Straight   PRT-10527  (Optional)
 7)     1    Jumper Wire - PTH Black White          PRT-08672  (Optional)
 8)     1    Jumper Wire - 0.1", 3-pin, 6"          PRT-10368  (Optional)
+9)     1    Hook-up Wire - Red                     PRT-08023  (Optional)
+10)    1    Hook-up Wire - Black                   PRT-08022  (Optional)
 
 Notes:
-Item #2:  This is needed only if you don't already have a way to program the Arduino Pro Mini
+Item #2:  This is needed only if you don't already have a way to program the Arduino Pro Mini.
+          DEV-09718 5V FTDI Cable will also work and you won't need to find a USB Cable.
 Item #3:  This is needed only if you don't want to make the Arduino Pro Mini a permanent installation
           in your calculator and you want to reuse it for a later project.
-Item #5:  This is needed if you want to permanently attach a means to reprogram the Arduino Pro Mini after it
-          has been installed into your calculator.
-Item #6:  This can be used in place of Item #5 and wouldn't have to be soldered to the Arduino Pro Mini.
-Item #7 and #8:  These are recommended only if you don't already have some old jumper wires (such as CD-ROM kits or 
+Item #6:  This can be used in place of soldering headers to the Arduino Pro Mini Programming Header.
+Items #7 and #8:  These are recommended only if you don't already have some old jumper wires (such as CD-ROM kits or 
           from old computer boards) laying around.
-
-
-BOM is current as of 07-JAN-2013
+Items #9 and #10:  Hook-up Wire is needed only if you don't already have a source of 22 AWG wire for the
+          wiring on the protoboard.
 
 
 
