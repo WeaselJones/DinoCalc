@@ -14,7 +14,7 @@ Bill of Material for items from MOUSER.COM
 Item
 No.   Qty   Description                            Part Number
 --    ---   -------------------------------------  ----------------
-1)     1    9v Alkaline Battery			              658-6LR61XWA
+1)     1    9v Alkaline Battery                    658-6LR61XWA
 2)     1    CARBON FILM RESISTOR - 330 OHMS        291-330-RC
 3)     1    CARBON FILM RESISTOR - 270 OHMS        291-270-RC
 4)     1    SPST ON-OFF SLIDE SWITCH               112-R13-602A
