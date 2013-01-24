@@ -1,15 +1,15 @@
 DinoCalc Hardware version 1.0 (Prototype stage)
 
+Below is a listing of parts used in the Prototype stage of 
+the DinoCalculator.  The Bill of Materials is listed in three 
+parts from Mouser.com, Sparkfun.com, and Amazon.com.
+Omit any parts you might already have and feel free to use
+your favorite source(s) for parts.
+
 
 ----------------------------------------------------
-MOUSER.COM
+BOM 1 of 3  MOUSER.COM  
 ----------------------------------------------------
-
-Both this BOM and the Sparkfun BOM are needed
-to complete the hardware portion of the DinoCalc.
-
-Bill of Material for items from MOUSER.COM
--------------------------------------------------------
 
 Item
 No.   Qty   Description                            Part Number
@@ -25,27 +25,15 @@ No.   Qty   Description                            Part Number
 9)     1    PROTOTYPE BOARD FOR 1553DBKBAT ENC     854-PR1553DBAT
 10)    1    HAND HELD ENC WITH BATT COMPARTMENT    546-1553DBKBAT
 
-
-
-You can also find this Bill of Material on the mouser.com website under
+You can find this Bill of Material on the mouser.com website under
 the DinoCalc version 1.0 project at the following link:
   
 http://www.mouser.com/ProjectManager/ProjectDetail.aspx?AccessID=0904c64079
 
 
-
 ----------------------------------------------------
-SPARKFUN.COM
+BOM 2 of 3  SPARKFUN.COM
 ----------------------------------------------------
-
-
-The following is a list of parts needed for this project on sparkfun.com.  
-Both this BOM and the mouser BOM are needed
-to complete the hardware portion of the DinoCalc.
-
-
-Bill of Material for items from Sparkfun.com
--------------------------------------------------------
 
 Item
 No.   Qty   Description                            Part Number
@@ -64,30 +52,25 @@ No.   Qty   Description                            Part Number
 Notes:
 Item #2:  This is needed if you don't already have a way to program the Arduino Pro Mini.
           DEV-09718 5V FTDI Cable will also work and you won't need to find a USB Cable.
-Item #3:  This is needed if you don't want to make the Arduino Pro Mini a permanent installation
-          in your calculator and you want to reuse it for a later project.
-Item #6:  This can be used in place of soldering headers to the Arduino Pro Mini Programming Header.
-Items #7 and #8:  These are recommended only if you don't already have some old jumper wires (such as CD-ROM kits or 
-          from old computer boards) laying around.
-Items #9 and #10:  Hook-up Wire is needed only if you don't already have a source of 22 AWG wire for the
-          wiring on the protoboard.
+Item #3:  This is needed if you don't want to make the Arduino Pro Mini a permanent
+          installation in your calculator and you want to reuse it for a later project.
+Item #6:  This can be used in place of soldering headers to the Arduino Pro Mini 
+          Programming Header.
+Items #7 and #8:  These are recommended only if you don't already have some old jumper 
+          wires (such as CD-ROM kits or from old computer boards) laying around.
+Items #9 and #10:  Hook-up Wire is needed only if you don't already have a source of 
+          22 AWG wire for the wiring on the protoboard.
 
-You can also find the parts in a Wish List on Sparkfun.com at:
+You can find this Bill of Material in a Wish List on Sparkfun.com at:
 https://www.sparkfun.com/wish_lists/56143
 
 
-
 ----------------------------------------------------
-AMAZON.COM
+BOM 3 of 3  AMAZON.COM
 ----------------------------------------------------
 
 This was the adhesive paper purchased to place over
 the keypad and on the enclosure face.
-
-
-
-Bill of Material for items from AMAZON.COM
--------------------------------------------------------
 
 Item
 No.   Qty   Description                            
