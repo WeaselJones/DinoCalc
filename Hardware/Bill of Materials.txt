@@ -62,9 +62,9 @@ No.   Qty   Description                            Part Number
 10)    1    Hook-up Wire - Black                   PRT-08022  (Optional)
 
 Notes:
-Item #2:  This is needed only if you don't already have a way to program the Arduino Pro Mini.
+Item #2:  This is needed if you don't already have a way to program the Arduino Pro Mini.
           DEV-09718 5V FTDI Cable will also work and you won't need to find a USB Cable.
-Item #3:  This is needed only if you don't want to make the Arduino Pro Mini a permanent installation
+Item #3:  This is needed if you don't want to make the Arduino Pro Mini a permanent installation
           in your calculator and you want to reuse it for a later project.
 Item #6:  This can be used in place of soldering headers to the Arduino Pro Mini Programming Header.
 Items #7 and #8:  These are recommended only if you don't already have some old jumper wires (such as CD-ROM kits or 

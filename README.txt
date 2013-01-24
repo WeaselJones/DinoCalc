@@ -23,7 +23,7 @@ Future objectives (not in any particular order) will be to:
 
 5) Develop code so that it could also be used for a "math" type game for multiple players. For example, Display a math problem and contestants enter answer on their calculators. If their answer is right, their token moves away from some peril (like a chomping dinosaur) and if wrong moves closer to peril. Loser is the one that gets eaten (chomp,chomp,chomp)
 
-6) Make the circuit low-power for longer battery life and replace the 9V battery with two NiMH AA batteries or perhaps even a “button” cell rechargeable battery
+6) Make the circuit low-power for longer battery life and replace the 9V battery with two NiMH AA batteries or perhaps even a button cell rechargeable battery
 
 7) Add a recharging circuit to recharge the rechargeable batteries from USB
 
