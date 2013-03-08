@@ -1,16 +1,22 @@
 
-Licenses
+Licenses & Credit
 ................................................................
-All Hardware Designs are released under 
-Creative Commons Attribution-ShareAlike 3.0 Unported License.
-http://creativecommons.org/licenses/by-sa/3.0/
+face.gif found at "Arthur's Free Dinosaur Clip Art Page 2"
+http://www.arthursclipart.org/dinosaurs/dinosaurs/face.gif
+................................................................
+fairy.svg found at openclipart.org by "tzunghaor"
+http://openclipart.org/detail/171412/fairy-by-tzunghaor-171412
 ................................................................
 Keypad.h version 3.0 library is authored by Mark Stanley and 
 Alexander Brevig. The Keypad.h version 3.0 library was released 
 under the GNU LGPL 2.1 license.
 http://playground.arduino.cc/Code/Keypad
 ................................................................
-The rest of the software code done by myself is released under 
+All Hardware Designs and documents authored by myself are released under 
+Creative Commons Attribution-ShareAlike 3.0 Unported License.
+http://creativecommons.org/licenses/by-sa/3.0/
+................................................................
+All of the software code done by myself is released under 
 the MIT License  http://opensource.org/licenses/MIT
 Copyright (c) 2012,2013 James R. Bundick
 
