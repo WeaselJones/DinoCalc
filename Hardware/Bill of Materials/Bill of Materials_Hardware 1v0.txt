@@ -40,7 +40,7 @@ No.   Qty   Description                            Part Number
 --    ---   -------------------------------------  ----------------
 1)     1    Arduino Pro Mini 328 - 5V/16MHz        DEV-11113
 2)     1    FTDI Basic Breakout - 5V               DEV-09716  (Optional)
-3)     1    Female Headers                         PRT-00115  (Optional)
+3)     1    Female Headers                         PRT-00115  (Recommended)
 4)     1    Break Away Headers - Straight          PRT-00116
 5)     1    Break Away Male Headers - Right Angle  PRT-00553  
 6)     1    Solderless Headers - 10-pin Straight   PRT-10527  (Optional)
