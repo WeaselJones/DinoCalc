@@ -123,17 +123,17 @@ Keypad:  4x4 Matrix Membrane keypad
          Row 3 >> Pin 3      Column 3 >> Pin 7
          Row 4 >> Pin 4      Column 4 >> Pin 8
 
-Arduino pin 2 ---> 4x4 keypad pin 1
-Arduino pin 3 ---> 4x4 keypad pin 2
-Arduino pin 4 ---> 4x4 keypad pin 3
-Arduino pin 5 ---> 4x4 keypad pin 4
-Arduino pin 6 ---> 4x4 keypad pin 5
-Arduino pin 7 ---> 4x4 keypad pin 6
-Arduino pin 8 ---> 4x4 keypad pin 7
-Arduino pin 9 ---> 4x4 keypad pin 8
-Arduino pin 10 ---> (long leg)RED LED(short leg) ---> 
+Arduino D 2 ---> 4x4 keypad pin 1
+Arduino D 3 ---> 4x4 keypad pin 2
+Arduino D 4 ---> 4x4 keypad pin 3
+Arduino D 5 ---> 4x4 keypad pin 4
+Arduino D 6 ---> 4x4 keypad pin 5
+Arduino D 7 ---> 4x4 keypad pin 6
+Arduino D 8 ---> 4x4 keypad pin 7
+Arduino D 9 ---> 4x4 keypad pin 8
+Arduino D10 ---> (long leg)RED LED(short leg) ---> 
                      330 ohm resistor ---> GND
-Arduino pin 11 ---> (long leg)GRN LED(short leg) ---> 
+Arduino D11 ---> (long leg)GRN LED(short leg) ---> 
                      270 ohm resistor ---> GND
 
 
