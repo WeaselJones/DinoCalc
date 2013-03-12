@@ -1,0 +1,26 @@
+Hardware Version History
+
+1.0 2012-12-31 - JRB: Prototype with Arduino Pro Mini (5V/16MHz)
+
+Software Version History
+
+1.0 2012-12-31 - JRB: RELEASE VERSION. Changed keypad matrix to match the layout I printed on the keypad sticker. Added blinkLEDs() to show activity when calculator is first powered ON. Commented out Serial commands and printInfo(), program size went from ~12,000 bytes to 9,868 bytes.
+0.5 2012-12-22 - JRB: Changed x,y,z,z2 from integers to floating
+for "real" number calculations. Since floating point math is not completly exact http://arduino.cc/en/Reference/Float I added code to check that the absolute value of the difference between the calculated answer and the entered answer is less than some small number. Reformated text layout for printing.
+0.4c 2012-12-22 - JRB: WORKING VERSION of adding and subtracting
+
+whole numbers only. Negative number adding and subtracting is also supported. Minus key can be used for negative numbers now, not just subtraction. (ie, can now enter "-3 + -5 = -8")
+0.4b 2012-12-21 - JRB: Added condition to prevent "?" from giving
+false "correct"
+0.4 2012-12-19 - JRB: Added more information to program
+
+description. Added comparison of user entered answer to calculated answer. Added Green and Red LED code for correct and wrong answer results. Changed code to allow negative number answers.
+0.3 2012-12-18 - JRB: Corrected minor string issue with equal sign
+
+attaching to stringOne after calculation. Cleaned up serial commands for debugging.
+0.2 2012-12-17 - JRB: Worked on code to add multi-digit numbers
+
+instead of single digit numbers by doing conversion of strings to integers.
+0.1 2012-12-17 - JRB: Got Code working to read key presses of
+
+membrane 4x4 keypad. Serial print commands added for debugging and will be commented out when code is stable.
