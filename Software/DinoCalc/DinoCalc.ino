@@ -1,15 +1,16 @@
-/* DinoCalc Calculator Software 1v0
+/* DinoCalc Calculator Software 1v1
    by James R. Bundick (weaseljones@gmail.com)
    Programmed using Arduino IDE 1.0.3
 ................................................................
-License
-The library, Keypad.h version 3.0, was used without modification
-and is authored by Mark Stanley and Alexander Brevig
-which they released under the GNU LGPL 2.1 license.
+Licenses
+Power Saving Code was from Nick Gammon's website (Reference #6)
 
-The rest of the code done by myself is released under 
+The Keypad.h version 3.0 library by Mark Stanley and Alexander Brevig
+was released under the GNU LGPL 2.1 license.
+
+The rest of the software code done by myself is released under 
 the MIT License  http://opensource.org/licenses/MIT
-Copyright (c) 2012 James R. Bundick
+Copyright (c) 2012,2013 James R. Bundick
 
 Permission is hereby granted, free of charge, to any person 
 obtaining a copy of this software and associated documentation 
@@ -31,8 +32,8 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 OTHER DEALINGS IN THE SOFTWARE.
 ................................................................
-
 Summary:
+
 When I was younger I had a calculator that did not have a LCD display but 
 instead had two LED lights, one green and one red.  You would enter a math 
 problem with what you thought the correct answer was (for example, 
@@ -50,35 +51,7 @@ using off the shelf items.  I plan on starting with an Arduino Pro Mini for
 the developmental and prototype stage and once I can get most of the major 
 bugs worked out I will then move on to a final version that has a lower cost 
 and device count (ATmega328p on a custom PCB).  
-
-
-Future objectives (not in any particular order) will be to:
-
-1) Replace the Arduino Pro Mini board with a custom made PCB and reduce parts 
-to a minimum to lower costs (I already have several friends wanting versions 
-for their kids)
-
-2) Add multiplication and division to the calculator's capabilities (low 
-priority for me since this will involve more keys then a 4x4 matrix keypad 
-and my son is only starting addition and subtraction right now)
-
-3) Develop a custom keypad (maybe using tactile buttons and caps, or making my
-own "membrane" type keypad, or exploring "conductive" type buttons)
-
-4) Add sound for errors or beep whenever custom keypad button is pressed
-
-5) Develop code so that it could also be used for a "math" type game for multiple
-players. For example, Display a math problem and contestants enter answer on their 
-calculators. If their answer is right, their token moves away from some peril (like
-a chomping dinosaur) and if wrong moves closer to peril. Loser is the one that gets
-eaten (chomp,chomp,chomp)
-
-6) Make the circuit low-power for longer battery life and replace the 9V battery
-with two NiMH AA batteries or perhaps even a “button” cell rechargeable battery
-
-7) Add a recharging circuit to recharge the rechargeable batteries from USB
-
-
+................................................................
 References used during development:
 1)  http://tronixstuff.wordpress.com/tutorials  > Arduino Tutorials,
     chapter 42a, Keypads II
@@ -87,70 +60,29 @@ References used during development:
 3)  "Arduino Cookbook", 2nd edition, by Michael Margolis
 4)  "BlinkWithoutDelay" example by David A. Mellis and Paul 
      Soffregen that came with Arduino IDE 1.0.3 
-5)  Floating number math with Arduino,
-    http://arduino.cc/en/Reference/Float 
-
-Bill of Material for prototype:
-1)  Arduino Pro Mini 5V/16MHz from Sparkfun.com
-2)  4x4 Matrix keypad purchased on Amazon.com
-3)  Red LED
-4)  Green LED
-5)  330 ohm resistor, 270 ohm resistor
-6)  SPST switch (used SPDT because that is what I had)
-7)  Female and Male Headers (Sparkfun.com)
-8)  Protobox - 1553DBAT-BK KIT from Busboard Prototye Systems
-    Purchased on Amazon.com
-    (Includes:  Enclosure, PCB, screws, battery clips)
-9)  Hook-up Wire
-10) 9V Battery
-11) Avery Adhesive Sticker Paper
-    Purchased on Amazon.com
-12) Heat Shrink (Radio Shack)
-13) LED holders (Radio Shack)
-
-Hardware layout:
-Keypad:  4x4 Matrix Membrane keypad 
-          
-          1  2  3  A 
-          4  5  6  B
-          7  8  9  C
-          *  0  #  D
-          
-         Each Row and Each Column connects to a PIN for total of 
-         8 pins.
-         Row 1 >> Pin 1      Column 1 >> Pin 5
-         Row 2 >> Pin 2      Column 2 >> Pin 6
-         Row 3 >> Pin 3      Column 3 >> Pin 7
-         Row 4 >> Pin 4      Column 4 >> Pin 8
-
-Arduino D 2 ---> 4x4 keypad pin 1
-Arduino D 3 ---> 4x4 keypad pin 2
-Arduino D 4 ---> 4x4 keypad pin 3
-Arduino D 5 ---> 4x4 keypad pin 4
-Arduino D 6 ---> 4x4 keypad pin 5
-Arduino D 7 ---> 4x4 keypad pin 6
-Arduino D 8 ---> 4x4 keypad pin 7
-Arduino D 9 ---> 4x4 keypad pin 8
-Arduino D10 ---> (long leg)RED LED(short leg) ---> 
-                     330 ohm resistor ---> GND
-Arduino D11 ---> (long leg)GRN LED(short leg) ---> 
-                     270 ohm resistor ---> GND
-
-
+5)  Floating number math with Arduino, http://arduino.cc/en/Reference/Float 
+6)  "Power saving techniques for microprocessors", Nick Gammon,
+    Gammon Software Solutions forum, http://www.gammon.com.au/forum/?id=11497
+................................................................
 Software Logic
 
 1) User enters First Number, then math operator, then Second
    Number, then equal sign, then user's answer, then "?"
-   [12 + 12 = 12 ? <-- User's guess]
-2) Microprocessor calculates answer to First Number, math 
-   operator, Second Number 
-   [12 + 12 = 24  <-- Calculated answer]
+   [12 + 12 = 12 ? <-- User's Input]
+2) Microprocessor calculates the correct answer 
+   [12 + 12 = "24"  <-- Calculated answer]
 3) Microprocessor compares calculated answer to  User Inputed 
    Answer.  If they are not equal then light red LED.  If they
    are equal then light green LED. 
    [12 != 24, so light red LED]
-
+................................................................
 Version History
+
+1.1  2013-01-16 - JRB:  Low Power Code Added.  Code ported to just 
+      Atmega328p chip running at 8MHz and 2.7V.  BOM and Hardware 
+      Layouts removed from comments and are now in external files 
+      under the Hardware folder.
+
 1.0  2012-12-31 - JRB:  RELEASE VERSION.  Changed keypad matrix to
       match the layout I printed on the keypad sticker.  Added
       blinkLEDs() to show activity when calculator is first powered
@@ -180,7 +112,6 @@ Version History
       correct and wrong answer results.  Changed code to allow 
       negative number answers.
                       
-
 0.3 2012-12-18 - JRB: Corrected minor string issue with equal sign
       attaching to stringOne after calculation.  Cleaned up serial
       commands for debugging.
@@ -192,31 +123,67 @@ Version History
 0.1 2012-12-17 - JRB: Got Code working to read key presses of 
       membrane 4x4 keypad.  Serial print commands added for 
       debugging and will be commented out when code is stable.
+................................................................
+Future objectives (not in any particular order) will be to:
 
+1) Add multiplication and division to the calculator's capabilities (low 
+priority for me since this will involve more keys then a 4x4 matrix keypad 
+and my son is only starting addition and subtraction right now)
+
+2) Develop a custom keypad (maybe using tactile buttons and caps, or making my
+own "membrane" type keypad, or exploring "conductive" type buttons)
+
+3) Add sound for errors or beep whenever custom keypad button is pressed
+
+4) Develop code so that it could also be used for a "math" type game for multiple
+players. For example, Display a math problem and contestants enter answer on their 
+calculators. If their answer is right, their token moves away from some peril (like
+a chomping dinosaur) and if wrong moves closer to peril. Loser is the one that gets
+eaten (chomp,chomp,chomp)
+
+5) Make the circuit low-power for longer battery life and replace the 9V battery
+with two NiMH AA batteries or perhaps even a “button” cell rechargeable battery
+
+6) Add a recharging circuit to recharge the rechargeable batteries from USB
+
+7) Allow the calculator to complete more than just one math operation,
+   (eg. 1 + 1 + 1 - 1 = 2 ?)
 */
 
-#include "Keypad.h" // http://www.arduino.cc/playground/Code/Keypad by Mark Stanley, Alexander Brevig 
-    
+/********************************************************************  
+Keypad Library: http://www.arduino.cc/playground/Code/Keypad 
+by Mark Stanley and Alexander Brevig 
+Download at:  http://arduino.cc/playground/uploads/Code/keypad.zip
+********************************************************************/
+
+#include "Keypad.h"
+#include <avr/sleep.h>    
 
 const byte ROWS = 4; //four rows
 const byte COLS = 4; //four columns
+
+//Information for Keypad Library
 char keys[ROWS][COLS] =
  {{'7','8','9','+'}, //Sticker will be applied over keypad to 
   {'4','5','6','-'}, //match the layout I want and to provide 
   {'1','2','3','?'}, //a custom graphic (eg dinosaur, bird, etc)
   {'C','0','.','='}};// 
+
 byte rowPins[ROWS] = {
   2, 3, 4, 5}; //Arduino pins that connect to the row pinouts of the keypad pins 1 through 4.
 byte colPins[COLS] = {
   6, 7, 8, 9}; //Arduino pins that connect to the column pinouts of the keypad pins 5 through 8.
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+//*********************************************************
 
 const int ledGRN = 11;  //Arduino output for Green LED
 const int ledRED = 10;  //Arduino output for Red LED
 
 long previousMillis = 0; //used to light LED without using delay()
+long previousMillis2 = 0; //used for sleep timer
 long interval = 3000;  //maximum time to leave LED HIGH (on)
+long interval2 = 5000;  //time of inactivity before sleep is enabled
 
 float x; //first number that is entered by user
 float y; //second number that is entered by user
@@ -251,15 +218,22 @@ void setup()
   i = 0;
   j = 0;
   blinkLEDs();
+  
+  previousMillis2 = millis();//move this later
 }
 
 void loop()
 {
   unsigned long currentMillis = millis();       //Make sure LED doesn't stay continuously on, 
+  unsigned long currentMillis2 = millis();       //Make sure LED doesn't stay continuously on, 
   if(currentMillis - previousMillis > interval) //but allow the code to continue without a delay.
   {                                             
     digitalWrite (ledGRN, LOW);                 
     digitalWrite (ledRED, LOW);                 
+  }
+ if(currentMillis2 - previousMillis2 > interval2) //sleep
+  {                                             
+    GoToSleep();       
   }
 
 
@@ -534,3 +508,29 @@ void blinkLEDs()
   }  
 } 
 
+void GoToSleep()
+{
+  // disable ADC
+  ADCSRA = 0;  
+  
+  set_sleep_mode (SLEEP_MODE_PWR_DOWN);  
+  sleep_enable();
+
+  // will be called when pin D2 goes low  
+  attachInterrupt (0, wake, LOW);
+ 
+  // turn off brown-out enable in software
+  MCUCR = _BV (BODS) | _BV (BODSE);
+  MCUCR = _BV (BODS); 
+  sleep_cpu ();  
+  
+  // must do this as the pin will probably stay low for a while
+  detachInterrupt (0);
+  
+  } // end of loop
+
+void wake ()
+{
+  // cancel sleep as a precaution
+  sleep_disable();
+}  // end of wake
