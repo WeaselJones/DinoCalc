@@ -1,4 +1,4 @@
-DinoCalc Hardware version 1.1 
+DinoCalc Hardware version 2.0 
 (Protoboard with ATMEGA328P Version)
 
 
