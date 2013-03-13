@@ -1,0 +1,2 @@
+"Power saving techniques for microprocessors", Nick Gammon,
+Gammon Software Solutions forum, http://www.gammon.com.au/forum/?id=11497
