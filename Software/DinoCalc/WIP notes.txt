@@ -1,2 +1,6 @@
 "Power saving techniques for microprocessors", Nick Gammon,
 Gammon Software Solutions forum, http://www.gammon.com.au/forum/?id=11497
+
+***************************************
+Add to start of code something that will support different hardware versions,
+that is change outputs if hardware 2v0 or 3v0 is used instead of version 1v0.
