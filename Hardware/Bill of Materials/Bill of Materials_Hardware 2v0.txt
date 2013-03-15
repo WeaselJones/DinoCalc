@@ -1,6 +1,8 @@
-DinoCalc Hardware version 2.0 
+DinoCalc Hardware version 2.0 - WIP 
 (Protoboard with ATMEGA328P Version)
-
+Notes:
+Need to see if all parts can be purchased in one place to save shipping
+If Low Power software works, might be able to eliminate all parts for power switch
 
 ----------------------------------------------------
 MOUSER.COM
@@ -29,6 +31,11 @@ No.   Qty   Description                            Part Number
 10)    1    HAND HELD ENC WITH BATT COMPARTMENT    546-1553DBKBAT
 11)    1    ARDUINO UNO REV 3                      782-A000066  (OPTIONAL)
 
+ATMega328P
+right angle headers
+3-wire jumper
+2-wire jumper
+
 NOTES:
 #11: (OPTIONAL) Instead of an AVR programmer I used my Arduino Uno
 with ArduinoISP loaded onto it to program the ATMEGA328P.  If you already
@@ -36,9 +43,9 @@ have an AVR programmer or Arduino UNO then you don't need to buy this.
 
 
 You can also find this Bill of Material on the mouser.com website under
-the DinoCalc version 1.1 project at the following link:
+the DinoCalc version 2.0 project at the following link:
   
-http://www.mouser.com/ProjectManager/ProjectDetail.aspx?AccessID=0904c64079
+http://www.mouser.com/ProjectManager/***************************************
 
 
 
