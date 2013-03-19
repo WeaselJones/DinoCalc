@@ -112,7 +112,7 @@ void ClearAll()
 
 void showError() //Blink RED LED to show Errors
 {
-  for (int k=0; k <10; k++) 
+  for (int i=0; i <10; i++) 
   {
     digitalWrite (ledGRN, LOW);
     digitalWrite (ledRED, HIGH);
@@ -123,9 +123,9 @@ void showError() //Blink RED LED to show Errors
   }   
 }
 
-void blinkLEDs()
+void blinkLEDs()  //flash LED's so you know something is going on
 {
-  for (int k=0; k <5; k++) //flash LED's so you know something is going on
+  for (int i=0; i <5; i++) 
   {
     digitalWrite (ledGRN, HIGH);
     digitalWrite (ledRED, HIGH);
@@ -138,27 +138,26 @@ void blinkLEDs()
 
 void CalcAns()
 {
-      x=0;
-      if (numstorage[1] <= 1){
-        numstorage[0] = numstorage[0] + atof(buildnum);
-      }
-      if (numstorage[1] == 2){
-        numstorage[0] = numstorage[0] - atof(buildnum);
-      }
-      numstorage[11] = atof(buildnum);  
-      for(int i = 0; i < 12; i++){
-        buildnum[i] = 0;
-      }
-     
+  x=0;
+  if (numstorage[1] <= 1){
+    numstorage[0] = numstorage[0] + atof(buildnum);
+  }
+  if (numstorage[1] == 2){
+    numstorage[0] = numstorage[0] - atof(buildnum);
+  }
+    numstorage[11] = atof(buildnum);  
+  for(int i = 0; i < 12; i++){
+    buildnum[i] = 0;
+  }
 }
 
 void CheckAns()
 {
-  float a;
-  a = numstorage[0] - numstorage[2];
-  numstorage[10];
   //since floating point math is not completly exact, http://arduino.cc/en/Reference/Float 
   //check that the absolute value of the difference between the numbers is less than some small number. 
+  float a;
+  a = numstorage[0] - numstorage[2];
+  numstorage[10] = a;
     if (abs(a) < 0.000001) 
   {                      
     digitalWrite (ledGRN, HIGH);
